@@ -28,5 +28,11 @@ jobs:
         with:
          channel: master
       # - run: flutter doctor
+
       - run: flutter config --enable-windows-desktop
       - run: flutter build windows
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: exe
+          path: ./build/windows/runner/Release
