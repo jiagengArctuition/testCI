@@ -27,3 +27,4 @@ jobs:
         with:
          channel: master
       - run: flutter doctor
+      - run: flutter build windows
