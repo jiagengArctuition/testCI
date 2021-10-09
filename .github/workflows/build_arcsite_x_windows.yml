@@ -1,0 +1,58 @@
+name: build windows version of arcsite flutter app
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.WORKFLOW_CLONE_SUBMODULE }}
+          submodules: recursive
+      
+      - name: setup flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: master
+      
+      - name: enable flutter desktop support
+        run: flutter config --enable-windows-desktop
+        
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      
+      - name: install python dependency
+        run: |
+          python -m pip install --upgrade pip
+          pip install lib-repo-tool
+    
+      - name: install llvm
+        uses: KyleMayes/install-llvm-action@v1
+        with:
+          version: "12"
+          
+      - name: run build script (windows)
+        run: .\ar-build.ps1
+        env:
+          LLVM_ROOT: C:\Program Files\LLVM
+
+  publish:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: download windows app
+        uses: actions/download-artifact@v2
+        with:
+          name: arcsite-x-windows
+          path: arcsite-x-windows
+
+      - name: zip windows app
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r arcsite-x-windows.zip arcsite-x-windows
