@@ -1,6 +1,10 @@
 name: build windows version of arcsite flutter app
 
 on:
+  repository_dispatch:
+    types:
+      - build-windows
+      
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
