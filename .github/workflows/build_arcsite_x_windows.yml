@@ -43,3 +43,4 @@ jobs:
         with:
           name: arcsite-x-windows
           path: arcsite_flutter\build\windows\runner\Release
+          retention-days: 1
