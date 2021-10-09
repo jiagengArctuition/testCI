@@ -11,6 +11,7 @@ jobs:
       - uses: someimportantcompany/github-actions-slack-message@v1
         id: slack
         with:
+          channel: ${{ env.SLACK_CHANNEL }}
           bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
           text: start windows build workflow
           
@@ -54,6 +55,7 @@ jobs:
       - uses: someimportantcompany/github-actions-slack-message@v1
         if: success()
         with:
+          channel: ${{ env.SLACK_CHANNEL }}
           bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
           message-id: ${{ steps.slack.outputs.message-id }}
           text: windows build success, download page -> https://github.com/jiagengArctuition/testCI/actions/runs/${{github.run_id}}
@@ -62,6 +64,7 @@ jobs:
       - uses: someimportantcompany/github-actions-slack-message@v1
         if: failure()
         with:
+          channel: ${{ env.SLACK_CHANNEL }}
           bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
           message-id: ${{ steps.slack.outputs.message-id }}
           text: windows build failed, see errors -> https://github.com/jiagengArctuition/testCI/actions/runs/${{github.run_id}}
