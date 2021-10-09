@@ -43,11 +43,3 @@ jobs:
         with:
           name: arcsite-x-windows
           path: arcsite_flutter\build\windows\runner\Release
-  
-  download:
-    runs-on: ubuntu-latest
-    steps:
-      - name: zip windows app
-        uses: montudor/action-zip@v1
-        with:
-          args: zip -qq -r arcsite-x-windows.zip arcsite-x-windows
