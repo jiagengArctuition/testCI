@@ -8,42 +8,42 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-#       - name: checkout
-#         uses: actions/checkout@v2
-#         with:
-#           repository: Arctuition/arcsite_x
-#           token: ${{ secrets.WORKFLOW_CLONE_SUBMODULE }}
-#           submodules: recursive
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          repository: Arctuition/arcsite_x
+          token: ${{ secrets.WORKFLOW_CLONE_SUBMODULE }}
+          submodules: recursive
       
-#       - name: setup flutter
-#         uses: subosito/flutter-action@v1
-#         with:
-#           channel: master
+      - name: setup flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: master
       
-#       - name: enable flutter desktop support
-#         run: flutter config --enable-windows-desktop
+      - name: enable flutter desktop support
+        run: flutter config --enable-windows-desktop
         
-#       - name: setup python
-#         uses: actions/setup-python@v2
-#         with:
-#           python-version: 3.9
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
       
-#       - name: install python dependency
-#         run: |
-#           python -m pip install --upgrade pip
-#           pip install lib-repo-tool
+      - name: install python dependency
+        run: |
+          python -m pip install --upgrade pip
+          pip install lib-repo-tool
           
-#       - name: run build script (windows)
-#         run: .\ar-build.ps1
-#         env:
-#           LLVM_ROOT: C:\Program Files\LLVM
+      - name: run build script (windows)
+        run: .\ar-build.ps1
+        env:
+          LLVM_ROOT: C:\Program Files\LLVM
           
-#       - name: upload app
-#         uses: actions/upload-artifact@v2
-#         with:
-#           name: arcsite-x-windows
-#           path: arcsite_flutter\build\windows\runner\Release
-#           retention-days: 1
+      - name: upload app
+        uses: actions/upload-artifact@v2
+        with:
+          name: arcsite-x-windows
+          path: arcsite_flutter\build\windows\runner\Release
+          retention-days: 1
         
       - uses: someimportantcompany/github-actions-slack-message@v1
         if: success()
