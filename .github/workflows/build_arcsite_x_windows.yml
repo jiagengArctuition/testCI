@@ -11,6 +11,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
         with:
+          repository: Arctuition/arcsite_x
           token: ${{ secrets.WORKFLOW_CLONE_SUBMODULE }}
           submodules: recursive
       
@@ -33,21 +34,11 @@ jobs:
           pip install lib-repo-tool
           
       - name: run build script (windows)
-        run: ar-build.ps1
+        run: .\ar-build.ps1
         env:
           LLVM_ROOT: C:\Program Files\LLVM
-
-  publish:
-    needs: [build]
-    runs-on: ubuntu-latest
-    steps:
-      - name: download windows app
-        uses: actions/download-artifact@v2
-        with:
-          name: arcsite-x-windows
-          path: arcsite-x-windows
-
+          
       - name: zip windows app
         uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r arcsite-x-windows.zip arcsite-x-windows
+          args: zip -qq -r arcsite-x-windows.zip arcsite_flutter\build\windows\runner\Release
