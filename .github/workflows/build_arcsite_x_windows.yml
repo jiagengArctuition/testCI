@@ -33,7 +33,7 @@ jobs:
           pip install lib-repo-tool
           
       - name: run build script (windows)
-        run: .\ar-build.ps1
+        run: ar-build.ps1
         env:
           LLVM_ROOT: C:\Program Files\LLVM
 
