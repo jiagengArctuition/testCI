@@ -32,6 +32,6 @@ jobs:
           name: mac-app
           path: |
             build/macos/Build/Products/Release
-            !*.dSYM
-            !*/*.dSYM
+            !build/macos/Build/Products/Release*.dSYM
+            !build/macos/Build/Products/Release*/*.dSYM
           retention-days: 1
