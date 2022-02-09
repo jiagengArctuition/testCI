@@ -29,6 +29,9 @@ jobs:
       - name: upload app
         uses: actions/upload-artifact@v2
         with:
-          name: macapp
-          path: build/macos/Build/Products/Release
+          name: mac-app
+          path: |
+            build/macos/Build/Products/Release
+            !*.dSYM
+            !*/*.dSYM
           retention-days: 1
