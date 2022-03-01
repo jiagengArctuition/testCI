@@ -17,6 +17,15 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.0.0+1
 
+msix_config:
+  display_name: Arcsite2
+  publisher_display_name: Arcsite
+  identity_name: ArcSite.Arcsite2
+  publisher: CN=8ADCF573-6017-4D06-A69D-53BCB55F065F
+  msix_version: 1.0.0.0
+  store: true
+  capabilities: runFullTrust
+
 environment:
   sdk: '>=2.12.0 <3.0.0'
 
@@ -32,6 +41,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  msix: ^3.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -19,9 +19,10 @@ jobs:
       # - run: flutter doctor
 
       - run: flutter config --enable-windows-desktop
-      - run: flutter build windows
+      - run: flutter pub get
+      - run: flutter pub run msix:create
 
       - uses: actions/upload-artifact@v2
         with:
-          name: exe
-          path: ./build/windows/runner/Release
+          name: msix
+          path: ./build/windows/runner/Release/test_ci.msix
