@@ -1,0 +1,23 @@
+name: test schedule task
+
+on:
+  workflow_dispatch:
+
+jobs:
+  base64:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: base64tofile
+        uses: timheuer/base64-to-file@v1.2
+        with:
+          fileName: 'arc.keystore'
+          fileDir: './android/'
+          encodedString: ${{ secrets.KEY_STORE }}
+          
+      - name: upload app
+        uses: actions/upload-artifact@v2
+        with:
+          name: arc.keystore
+          path: /Users/runner/work/testCI/testCI/android/arc.keystore
+          retention-days: 1
