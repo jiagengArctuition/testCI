@@ -9,11 +9,14 @@ jobs:
 
     steps:
       - name: base64tofile
+        id: base64
         uses: timheuer/base64-to-file@v1.2
         with:
           fileName: 'arc.keystore'
           fileDir: './android/'
           encodedString: ${{ secrets.KEY_STORE }}
+      
+      - run: echo ${{ steps.base64.outputs.filePath }}
           
       - name: upload app
         uses: actions/upload-artifact@v2
