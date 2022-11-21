@@ -41,7 +41,7 @@ android {
         versionName flutterVersionName
     }
 
-    buildTypes {
+    signingConfigs {
         release {
             storeFile file("release.keystore")
             storePassword System.getenv("SIGNING_STORE_PASSWORD")
