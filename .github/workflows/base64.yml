@@ -23,9 +23,16 @@ jobs:
       - run: echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/signing.properties
       - run: echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/signing.properties
           
-      - name: upload app
-        uses: actions/upload-artifact@v2
+      - uses: actions/checkout@v2
+
+      - uses: subosito/flutter-action@v2
         with:
-          name: signing.properties
-          path: android/signing.properties
-          retention-days: 1
+         channel: master
+      # - run: flutter doctor
+
+      - run: flutter build apk
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: apk
+          path: ./build/app/outputs/flutter-apk/app-release.apk
