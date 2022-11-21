@@ -12,15 +12,20 @@ jobs:
         id: base64
         uses: timheuer/base64-to-file@v1.2
         with:
-          fileName: 'arc.keystore'
+          fileName: 'release.keystore'
           fileDir: './android/'
           encodedString: ${{ secrets.KEY_STORE }}
       
       - run: echo ${{ steps.base64.outputs.filePath }}
+      
+      - run: echo "keystorePath=android/release.keystore" > android/signing.properties
+      - run: echo "keystorePassword=${{ secrets.KEY_STORE_PASSWORD }}" >> android/signing.properties
+      - run: echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/signing.properties
+      - run: echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/signing.properties
           
       - name: upload app
         uses: actions/upload-artifact@v2
         with:
-          name: arc.keystore
-          path: android/arc.keystore
+          name: signing.properties
+          path: android/signing.properties
           retention-days: 1
