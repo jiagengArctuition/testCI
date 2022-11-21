@@ -31,7 +31,11 @@ jobs:
       # - run: flutter doctor
 
       - run: flutter build apk
-
+        env:
+          SIGNING_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          
       - uses: actions/upload-artifact@v2
         with:
           name: apk
