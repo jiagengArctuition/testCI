@@ -15,13 +15,6 @@ jobs:
           fileName: 'release.keystore'
           fileDir: './android/'
           encodedString: ${{ secrets.KEY_STORE }}
-      
-      - run: echo ${{ steps.base64.outputs.filePath }}
-      
-      - run: echo "keystorePath=android/release.keystore" > android/signing.properties
-      - run: echo "keystorePassword=${{ secrets.KEY_STORE_PASSWORD }}" >> android/signing.properties
-      - run: echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/signing.properties
-      - run: echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/signing.properties
           
       - uses: actions/checkout@v2
 
