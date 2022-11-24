@@ -10,10 +10,18 @@ on:
 
 jobs:
   base64:
-    runs-on: ubuntu-latest
+    runs-on: macos-12
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      
+      - run: brew install yq
+      
+      - run: yq '.versionCode' pubspec.yaml
+      
+      - run: yq -i '.versionCode = "$(($(yq '.versionCode' pubspec.yaml)+1))"' pubspec.yaml
+      
+      - run: yq '.versionCode' pubspec.yaml
       
       - run: git tag "v${{ inputs.appVersion }}"
       - run: git push --tags
