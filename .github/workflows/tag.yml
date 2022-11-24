@@ -2,6 +2,11 @@ name: tag
 
 on:
   workflow_dispatch:
+    inputs:
+      appVersion:
+        type: string
+        default: '1.1.0'
+        description: 'app version'
 
 jobs:
   base64:
@@ -10,4 +15,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - run: git tag
+      - run: git tag "v${{ inputs.appVersion }}"
+      - run: git push --tags
