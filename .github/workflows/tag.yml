@@ -23,5 +23,9 @@ jobs:
       
       - run: yq '.versionCode' pubspec.yaml
       
+      - run: git add pubspec.yaml
+      - run: git commit -m "ci - update versionCode"
+      - run: git push
+      
       - run: git tag "v${{ inputs.appVersion }}"
       - run: git push --tags
