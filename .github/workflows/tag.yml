@@ -19,7 +19,7 @@ jobs:
       
       - run: yq '.versionCode' pubspec.yaml
       
-      - run: yq -i '.versionCode = "$(($(yq '.versionCode' pubspec.yaml)+1))"' pubspec.yaml
+      - run: yq -i '.versionCode |= . + 1 ' pubspec.yaml
       
       - run: yq '.versionCode' pubspec.yaml
       
