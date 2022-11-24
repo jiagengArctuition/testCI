@@ -23,9 +23,8 @@ jobs:
       
       - run: yq '.versionCode' pubspec.yaml
       
-      - run: git add pubspec.yaml
-      - run: git commit -m "ci - update versionCode"
-      - run: git push
+      - name: update android versionCode
+        run: git add pubspec.yaml && git commit -m "[ci] update android versionCode" && git push
       
       - run: git tag "v${{ inputs.appVersion }}"
       - run: git push --tags
