@@ -1,0 +1,14 @@
+name: tag  
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '!.gitignore'
+      
+jobs:
+  filter:
+    runs-on: macos-12
+    steps:
+      - run: echo "i'am running!"
