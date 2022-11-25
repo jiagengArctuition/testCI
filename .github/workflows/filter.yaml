@@ -1,6 +1,8 @@
-name: tag  
+name: filter  
 
 on:
+  workflow_dispatch:
+  
   push:
     branches:
       - master
