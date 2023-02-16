@@ -1,0 +1,12 @@
+name: debug macos env
+
+on:
+  workflow_dispatch:
+
+jobs:
+  debug-windows:
+    runs-on: macos-12
+
+    steps:
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
