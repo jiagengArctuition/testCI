@@ -7,6 +7,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - run: ls -a /Users/runner/Library/Android/sdk/ndk/25.2.9519653
+      - run: mkdir -p /Users/runner/Library/Android/sdk/ndk/25.1.8937393
       - run: wget https://dl.google.com/android/repository/android-ndk-r25b-darwin.zip
       - run: unzip android-ndk-r25b-darwin.zip
       - run: mv android-ndk-r25b/* /Users/runner/Library/Android/sdk/ndk/25.1.8937393/
