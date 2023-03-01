@@ -1,0 +1,14 @@
+name: test ndk
+on:
+  workflow_dispatch:
+  
+jobs:
+  test-ndk:
+    runs-on: macos-latest
+    steps:
+      - name: schmiddim-wget-unzip
+        uses: schmiddim/action-wget-unzip@v2
+        with:
+          url: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.zip'
+          destination: r25b
+      - run: ls r25b
