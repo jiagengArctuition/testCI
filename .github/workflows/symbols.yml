@@ -1,0 +1,20 @@
+name: download debug symbols
+
+on:
+  workflow_dispatch:
+    inputs:
+      engineVersion:
+        required: false
+        type: string
+        default: "f40e976bedff57e69e1b3d89a7c2a3c617a03dad"
+        description: "flutter engine version"
+
+jobs:
+  build:
+    runs-on: macos-12
+    steps:
+      - name: Download and extract file
+        run: |
+          wget "https://storage.googleapis.com/flutter_infra_release/flutter/${{ inputs.engineVersion }}/android-arm64-release/symbols.zip" -O symbols.zip
+          unzip download.zip
+        shell: bash
