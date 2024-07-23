@@ -13,8 +13,13 @@ jobs:
   build:
     runs-on: macos-12
     steps:
-      - name: Download and extract file
-        run: |
+      - run: |
           wget "https://storage.googleapis.com/flutter_infra_release/flutter/${{ inputs.engineVersion }}/android-arm64-release/symbols.zip" -O symbols.zip
           unzip download.zip
         shell: bash
+      
+      - uses: actions/upload-artifact@v2
+        with:
+          name: test
+          path: libflutter.so
+          retention-days: 1
