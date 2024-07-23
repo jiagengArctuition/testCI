@@ -14,8 +14,8 @@ jobs:
     runs-on: macos-12
     steps:
       - run: |
-          wget "https://storage.googleapis.com/flutter_infra_release/flutter/${{ inputs.engineVersion }}/android-arm64-release/symbols.zip" -O symbols.zip
-          unzip download.zip
+          wget "https://storage.googleapis.com/flutter_infra_release/flutter/${{ inputs.engineVersion }}/android-arm64-release/symbols.zip"
+          unzip symbols.zip
         shell: bash
       
       - uses: actions/upload-artifact@v2
